@@ -1,0 +1,13 @@
+#%RAML 1.0 SecurityScheme
+
+type: Pass Through
+description: Require a header for authentication
+displayName: Zync Access Token
+
+describedBy:
+  headers:
+    X-ZYNC-TOKEN:
+      type: string
+
+settings:
+  signatures: PLAINTEXT

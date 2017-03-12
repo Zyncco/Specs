@@ -1,0 +1,53 @@
+#%RAML 1.0
+
+title: Zync
+version: v1
+
+mediaType: application/json
+
+securitySchemes:
+  X-ZYNC-TOKEN: !include security/x-zync-token.raml
+
+securedBy: [X-ZYNC-TOKEN]
+
+types:
+  Clipboard: !include types/Clipboard.raml
+  ClipboardChecksum: !include types/ClipboardChecksum.raml
+  GenericResponse: !include types/GenericResponse.raml
+
+/v1:
+  /clipboard:
+    get:
+      description: "Get the authenticated users clipboard contents."
+      responses:
+        200:
+          body:
+            application/octet-stream: file
+        403:
+          body:
+            type: GenericResponse
+
+    post:
+      description: "Update the authenticated users clipboard contents."
+      body:
+        type: Clipboard
+      responses:
+        200:
+          body:
+            type: GenericResponse
+
+    delete:
+      description: "Clear the authenticated users clipboard contents."
+      responses:
+        200:
+          body:
+            type: GenericResponse
+
+    /checksum:
+      get:
+        description: "Verify the checksum of the authenticated users clipboard contents. NOTE: Added as a helper method, may or may not survive rollout."
+        responses:
+          200:
+            body: ClipboardChecksum
+          403:
+            body: GenericResponse
