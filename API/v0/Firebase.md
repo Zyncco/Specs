@@ -21,5 +21,5 @@ When clients receive a message on Firebase, they must ensure a few conditions ar
 - The message is from the server (check sender)
 - The data received contains both `type` and `size`
 
-Before fetching data from the server, the clients must unsure it aligns with the device's settings. 
+Before fetching data from the server, the clients must ensure the message aligns with the device's settings to accept. 
 On mobile specifically, this will significantly save on data when there is a large payload.
