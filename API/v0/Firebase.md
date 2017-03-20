@@ -12,6 +12,7 @@ Zync messages are
 
 | Key | Type | Description |
 | --- | --- | --- |
+| time | long | Timestamp of the data being sent |
 | type | DataType | The type of data being sent: TEXT, IMAGE, VIDEO, BINARY |
 | size | long | Size of payload in bytes |
 
