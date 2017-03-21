@@ -1,0 +1,8 @@
+language: node_js
+
+script:
+  - bash ./scripts/deploy-to-gh-pages.sh
+env:
+  global:
+    - GITHUB_REPO: "Zyncco/Specs"
+    - secure: qhulqB2JSwNXxlEU/jSsIBKHkm3/D/b9IrFcys+w9JZX9HrfgllTx34RljVJ8a0vGN1rNTTOZ5UqSR4FRzQVQHgJ04iNTd9L/iQDHsvnmXi3k9GFYXMB3yf8RlH8MSLxEAmH437CY9lyXQQpQSPoHK3OzU2h3ZCjhsCwcXmFGA/BIv4o4GxmwnpWFE0EyO5mv+5bZVqoQA5F1YHId0w9PSeM9ZLc1B09XCql2crKjk6PAuMFvfysSYmtvQCLyA9uGYygrPYBcXwdCCVVJTGIbYLkTaAQkFnNdIKOr5Rq+OCuJ0G8EcuHnKpb/teg5+ogKl3p0Pm/pEcXjMLn9eA/53/CGP7EK23R/jDLXr6YQfup5x/osSJ4c2uPFNL8zXPAndhSaIPNpwizemvfaIaqmcGHQKWPxmcKzRQ3sVDoYL0Q5R01bKLOy4c37nD9LKzz1Q7rTBnvv7Qsd1m7RYDrnZROZqbi5SPzhi5v/gHQChYUd1DsXVzo3o9RI1eJ+QAUpoO4pVlmDSZLueRt3McqDGy9zlZibWbeeJJEn3T8kq0iI//10ZpIh2HDaX4iLnRO6ulks0VLOOiZbvzIXD5iOTuNAx3ZsXn1i8UccXRKUH/XwdOXy8Lsi+LoB70S48cvDhVtzsHPtLnm0nxrid9e2Yd2zGriKcC/I/UUtJuaJSU=
