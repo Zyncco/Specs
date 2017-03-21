@@ -13,6 +13,8 @@ npm install raml2html
 
 raml2html API/raml/v1/index.raml > public/index.html
 
+echo "docs.zync.co" > public/CNAME
+
 cd public
 git init
 git add .
