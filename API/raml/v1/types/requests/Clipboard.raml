@@ -11,15 +11,9 @@ properties:
       hash:
         type: object
         properties:
-          sha256:
+          crc32:
             type: string
-            description: "An SHA256 hash of un-compressed, un-encrypyted clipboard contents"
-          md5:
-            type: string
-            description: "An MD5 hash of un-compressed, un-encrypyted clipboard contents"
-      encrypted:
-        type: boolean
-        description: "Represents whether the data sent is encrypted"
+            description: "An CRC32 checksum of the data payload"
       data:
         type: string
         description: "Fully processed clipboard data (Compressed, Encrypted, Base64'd)"

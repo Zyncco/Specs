@@ -1,0 +1,15 @@
+#%RAML 1.0 DataType
+
+type: object
+properties:
+  success: !include Success.raml
+  error: !include Error.raml
+  data:
+    type: object
+    properties:
+      zync_token:
+        type: string
+        description: "The zync token, that further has to be used as X-ZYNC-TOKEN header"
+      first_device:
+        type: boolean
+        description: "Whether this is the first device associated with the account"

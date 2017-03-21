@@ -8,46 +8,147 @@ mediaType: application/json
 securitySchemes:
   X-ZYNC-TOKEN: !include security/x-zync-token.raml
 
+types:
+  GenericResponse: !include types/responses/GenericResponse.raml
+  ClipboardHistory: !include types/responses/ClipboardHistory.raml
+  CallbackToken: !include types/responses/CallbackToken.raml
+  ClipboardVerification: !include types/responses/ClipboardVerification.raml
+  Clipboard: !include types/requests/Clipboard.raml
+
 securedBy: [X-ZYNC-TOKEN]
 
-types:
-  Clipboard: !include types/Clipboard.raml
-  ClipboardChecksum: !include types/ClipboardChecksum.raml
-  GenericResponse: !include types/GenericResponse.raml
+/clipboard:
+  get:
+    description: "Retrieve the latest clipboard contents."
+    responses:
+      200:
+        body:
+          application/octet-stream: file
+      204:
+        body:
+          type: GenericResponse
+      400:
+        body:
+          type: GenericResponse
+      401:
+        body:
+          type: GenericResponse
+      404:
+        body:
+          type: GenericResponse
+      500:
+        body:
+          type: GenericResponse
 
-/v1:
-  /clipboard:
+  /verify:
     get:
-      description: "Get the authenticated users clipboard contents."
+      description: "Retrieve the latest clipboards timestamp and hash."
+      responses:
+        200:
+          body:
+            type: ClipboardVerification
+        401:
+          body:
+            type: GenericResponse
+        404:
+          body:
+            type: GenericResponse
+        500:
+          body:
+            type: GenericResponse
+
+  post:
+    description: "Update the clipboard contents."
+    body:
+      type: Clipboard
+    responses:
+      200:
+        body:
+          type: GenericResponse
+      400:
+        body:
+          type: GenericResponse
+      401:
+        body:
+          type: GenericResponse
+      500:
+        body:
+          type: GenericResponse
+
+  delete:
+    description: "Clear the clipboard contents."
+    responses:
+      200:
+        body:
+          type: GenericResponse
+      401:
+        body:
+          type: GenericResponse
+      500:
+        body:
+          type: GenericResponse
+
+  /history:
+    get:
+      description: "Retrieve the history of previous clipboards."
+      responses:
+        200:
+          body: ClipboardHistory
+        401:
+          body: GenericResponse
+
+  /{timestamp}:
+    get:
+      description: "Retrieve a clipboard with specific timestamp."
       responses:
         200:
           body:
             application/octet-stream: file
-        403:
+        204:
+          body:
+            type: GenericResponse
+        401:
+          body:
+            type: GenericResponse
+        404:
+          body:
+            type: GenericResponse
+        500:
           body:
             type: GenericResponse
 
-    post:
-      description: "Update the authenticated users clipboard contents."
-      body:
-        type: Clipboard
-      responses:
-        200:
-          body:
-            type: GenericResponse
-
-    delete:
-      description: "Clear the authenticated users clipboard contents."
-      responses:
-        200:
-          body:
-            type: GenericResponse
-
-    /checksum:
+    /verify:
       get:
-        description: "Verify the checksum of the authenticated users clipboard contents. NOTE: Added as a helper method, may or may not survive rollout."
+        description: "Retrieve the timestamp and hash with specific timestamp."
         responses:
           200:
-            body: ClipboardChecksum
-          403:
-            body: GenericResponse
+            body:
+              type: ClipboardVerification
+          401:
+            body:
+              type: GenericResponse
+          404:
+            body:
+              type: GenericResponse
+          500:
+            body:
+              type: GenericResponse
+
+/user:
+  /authenticate:
+    securedBy: []
+    get:
+      description: "Retrieve a Zync token"
+      responses:
+        200:
+          body: CallbackToken
+        400:
+          body:
+            type: GenericResponse
+        500:
+          body:
+            type: GenericResponse
+      queryParameters:
+        token:
+          description: "Use a Firebase Token to receive the Zync token"
+          type: string
