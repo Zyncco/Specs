@@ -6,7 +6,7 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "master" ]; then e
 rm -rf public
 mkdir public
 
-git config --global user.email "nobody@nobody.org"
+git config --global user.email "robot@travis-ci.org"
 git config --global user.name "Travis CI"
 
 npm install raml2html
