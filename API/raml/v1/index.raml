@@ -117,6 +117,24 @@ securedBy: [X-ZYNC-TOKEN]
         500:
           body:
             type: GenericResponse
+
+    /verify:
+      get:
+        description: "Retrieve the timestamp and hash with specific timestamp."
+        responses:
+          200:
+            body:
+              type: ClipboardVerification
+          401:
+            body:
+              type: GenericResponse
+          404:
+            body:
+              type: GenericResponse
+          500:
+            body:
+              type: GenericResponse
+
   /{timestamp},...:
     get:
       description: "Retrieve list of clipboards with specific timestamps separated by commas."
@@ -136,23 +154,6 @@ securedBy: [X-ZYNC-TOKEN]
         500:
           body:
             type: GenericResponse
-
-    /verify:
-      get:
-        description: "Retrieve the timestamp and hash with specific timestamp."
-        responses:
-          200:
-            body:
-              type: ClipboardVerification
-          401:
-            body:
-              type: GenericResponse
-          404:
-            body:
-              type: GenericResponse
-          500:
-            body:
-              type: GenericResponse
 
 /user:
   /authenticate:
