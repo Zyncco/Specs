@@ -26,6 +26,9 @@ properties:
           salt:
             type: string
             description: "The salt for encryption key"
-      data:
+      mime-type:
+        enum: ["text/plain", "image/jpeg"]
+        description: "The mime-type of the data"
+      payload:
         type: string
-        description: "Fully processed clipboard data (Compressed, Encrypted, Base64'd)"
+        description: "Fully processed clipboard payload (Compressed, Encrypted, Base64'd)"
