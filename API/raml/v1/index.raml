@@ -12,9 +12,9 @@ types:
   GenericResponse: !include types/responses/GenericResponse.raml
   ClipboardHistory: !include types/responses/ClipboardHistory.raml
   CallbackToken: !include types/responses/CallbackToken.raml
-  ListClipboards: !include types/responses/ListClipboards.raml
-  ClipboardVerification: !include types/responses/ClipboardVerification.raml
-  Clipboard: !include types/requests/Clipboard.raml
+  ClipboardList: !include types/responses/ClipboardList.raml
+  ClipboardResponse: !include types/responses/Clipboard.raml
+  ClipboardRequest: !include types/requests/Clipboard.raml
 
 securedBy: [X-ZYNC-TOKEN]
 
@@ -24,7 +24,7 @@ securedBy: [X-ZYNC-TOKEN]
     responses:
       200:
         body:
-          application/octet-stream: file
+          type: ClipboardResponse
       204:
         body:
           type: GenericResponse
@@ -61,7 +61,7 @@ securedBy: [X-ZYNC-TOKEN]
   post:
     description: "Update the clipboard contents."
     body:
-      type: Clipboard
+      type: ClipboardRequest
     responses:
       200:
         body:
@@ -104,7 +104,7 @@ securedBy: [X-ZYNC-TOKEN]
       responses:
         200:
           body:
-            application/octet-stream: file
+            type: ClipboardResponse
         204:
           body:
             type: GenericResponse
@@ -118,30 +118,13 @@ securedBy: [X-ZYNC-TOKEN]
           body:
             type: GenericResponse
 
-    /verify:
-      get:
-        description: "Retrieve the timestamp and hash with specific timestamp."
-        responses:
-          200:
-            body:
-              type: ClipboardVerification
-          401:
-            body:
-              type: GenericResponse
-          404:
-            body:
-              type: GenericResponse
-          500:
-            body:
-              type: GenericResponse
-
   /{timestamp},...:
     get:
       description: "Retrieve list of clipboards with specific timestamps separated by commas."
       responses:
         200:
           body:
-            type: ListClipboards
+            type: ClipboardList
         204:
           body:
             type: GenericResponse
