@@ -1,0 +1,22 @@
+#%RAML 1.0 DataType
+
+type: object
+properties:
+  timestamp:
+    type: integer
+  hash:
+    type: object
+    properties:
+      crc32:
+        type: string
+  encryption:
+    type: object
+    properties:
+      type:
+        enum: ["AES256-GCM-NOPADDING"]
+      iv:
+        type: string
+      salt:
+        type: string
+  payload-type:
+    enum: ["TEXT", "IMAGE", "VIDEO", "BINARY"]

@@ -2,10 +2,6 @@
 
 type: object
 properties:
-  timestamp:
-    type: integer
-  hash:
-    type: object
-    properties:
-      crc32:
-        type: string
+  success: !include Success.raml
+  error: !include Error.raml
+  data: !include ClipboardData.raml
