@@ -12,6 +12,7 @@ types:
   GenericResponse: !include types/responses/GenericResponse.raml
   ClipboardHistory: !include types/responses/ClipboardHistory.raml
   CallbackToken: !include types/responses/CallbackToken.raml
+  ListClipboards: !include types/responses/ListClipboards.raml
   ClipboardVerification: !include types/responses/ClipboardVerification.raml
   Clipboard: !include types/requests/Clipboard.raml
 
@@ -104,6 +105,25 @@ securedBy: [X-ZYNC-TOKEN]
         200:
           body:
             application/octet-stream: file
+        204:
+          body:
+            type: GenericResponse
+        401:
+          body:
+            type: GenericResponse
+        404:
+          body:
+            type: GenericResponse
+        500:
+          body:
+            type: GenericResponse
+  /{timestamp},...:
+    get:
+      description: "Retrieve list of clipboards with specific timestamps separated by commas."
+      responses:
+        200:
+          body:
+            type: ListClipboards
         204:
           body:
             type: GenericResponse
