@@ -41,23 +41,6 @@ securedBy: [X-ZYNC-TOKEN]
         body:
           type: GenericResponse
 
-  /verify:
-    get:
-      description: "Retrieve the latest clipboards timestamp and hash."
-      responses:
-        200:
-          body:
-            type: ClipboardVerification
-        401:
-          body:
-            type: GenericResponse
-        404:
-          body:
-            type: GenericResponse
-        500:
-          body:
-            type: GenericResponse
-
   post:
     description: "Update the clipboard contents."
     body:
