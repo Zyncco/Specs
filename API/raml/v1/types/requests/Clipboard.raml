@@ -5,7 +5,7 @@ properties:
   data:
     type: object
     properties:
-      time:
+      timestamp:
         type: integer
         description: "A unix timestamp of time taken when clipboard is copied"
       hash:
@@ -14,6 +14,18 @@ properties:
           crc32:
             type: string
             description: "An CRC32 checksum of the data payload"
+      encryption:
+        type: object
+        properties:
+          type:
+            type: string
+            description: "The encryption type (currently only supports 'aes256-gcm-nopadding')"
+          iv:
+            type: string
+            description: "The iv for encryption"
+          salt:
+            type: string
+            description: "The salt for encryption key"
       data:
         type: string
         description: "Fully processed clipboard data (Compressed, Encrypted, Base64'd)"
