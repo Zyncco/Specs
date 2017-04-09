@@ -83,6 +83,26 @@ securedBy: [X-ZYNC-TOKEN]
         401:
           body: GenericResponse
 
+  /raw:
+    get:
+      description: "Retrieve latest raw clipboard data."
+      responses:
+        200:
+          body:
+            type: binary/octet-stream
+        204:
+          body:
+            type: GenericResponse
+        401:
+          body:
+            type: GenericResponse
+        404:
+          body:
+            type: GenericResponse
+        500:
+          body:
+            type: GenericResponse
+
   /{timestamp}:
     get:
       description: "Retrieve a clipboard with specific timestamp."
@@ -102,6 +122,26 @@ securedBy: [X-ZYNC-TOKEN]
         500:
           body:
             type: GenericResponse
+
+    /raw:
+      get:
+        description: "Retrieve raw clipboard data with specific timestamp"
+        responses:
+          200:
+            body:
+              type: binary/octet-stream
+          204:
+            body:
+              type: GenericResponse
+          401:
+            body:
+              type: GenericResponse
+          404:
+            body:
+              type: GenericResponse
+          500:
+            body:
+              type: GenericResponse
 
   /{timestamp},...:
     get:
@@ -126,7 +166,7 @@ securedBy: [X-ZYNC-TOKEN]
 /user:
   /authenticate:
     securedBy: []
-    get:
+    post:
       description: "Authenticate a user and send a zync token with a random token to the device using firebase messaging"
       body:
         type: UserAuthenticate
@@ -142,7 +182,7 @@ securedBy: [X-ZYNC-TOKEN]
 
 /device:
   /validate:
-    get:
+    post:
       description: "Validate the device and start receiving clipboard notifications"
       body:
         type: DeviceValidate
