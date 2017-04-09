@@ -11,10 +11,12 @@ securitySchemes:
 types:
   GenericResponse: !include types/responses/GenericResponse.raml
   ClipboardHistory: !include types/responses/ClipboardHistory.raml
-  CallbackToken: !include types/responses/CallbackToken.raml
   ClipboardList: !include types/responses/ClipboardList.raml
   ClipboardResponse: !include types/responses/Clipboard.raml
+  UserAuthenticateResponse: !include types/responses/UserAuthenticateResponse.raml
   ClipboardRequest: !include types/requests/Clipboard.raml
+  UserAuthenticate: !include types/requests/UserAuthenticate.raml
+  DeviceValidate: !include types/requests/DeviceValidate.raml
 
 securedBy: [X-ZYNC-TOKEN]
 
@@ -125,17 +127,31 @@ securedBy: [X-ZYNC-TOKEN]
   /authenticate:
     securedBy: []
     get:
-      description: "Retrieve a Zync token"
+      description: "Authenticate a user and send a zync token with a random token to the device using firebase messaging"
+      body:
+        type: UserAuthenticate
       responses:
         200:
-          body: CallbackToken
+          body: UserAuthenticateResponse
         400:
           body:
             type: GenericResponse
         500:
           body:
             type: GenericResponse
-      queryParameters:
-        token:
-          description: "Use a Firebase Token to receive the Zync token"
-          type: string
+
+/device:
+  /validate:
+    get:
+      description: "Validate the device and start receiving clipboard notifications"
+      body:
+        type: DeviceValidate
+      responses:
+        200:
+          body: GenericResponse
+        400:
+          body:
+            type: GenericResponse
+        500:
+          body:
+            type: GenericResponse
