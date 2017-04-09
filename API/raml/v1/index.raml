@@ -88,7 +88,8 @@ securedBy: [X-ZYNC-TOKEN]
       description: "Retrieve latest raw clipboard data."
       responses:
         200:
-          body: binary/octet-stream
+          body:
+            binary/octet-stream:
         204:
           body:
             type: GenericResponse
@@ -127,7 +128,8 @@ securedBy: [X-ZYNC-TOKEN]
         description: "Retrieve raw clipboard data with specific timestamp"
         responses:
           200:
-            body: binary/octet-stream
+            body:
+              binary/octet-stream:
           204:
             body:
               type: GenericResponse
