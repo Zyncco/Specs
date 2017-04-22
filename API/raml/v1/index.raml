@@ -14,7 +14,9 @@ types:
   ClipboardList: !include types/responses/ClipboardList.raml
   ClipboardResponse: !include types/responses/Clipboard.raml
   UserAuthenticateResponse: !include types/responses/UserAuthenticateResponse.raml
+  UploadURL: !include types/responses/UploadURL.raml
   ClipboardRequest: !include types/requests/Clipboard.raml
+  ClipboardRequestWithoutPayload: !include types/requests/ClipboardWithoutPayload.raml
   UserAuthenticate: !include types/requests/UserAuthenticate.raml
   DeviceValidate: !include types/requests/DeviceValidate.raml
 
@@ -162,6 +164,28 @@ securedBy: [X-ZYNC-TOKEN]
         500:
           body:
             type: GenericResponse
+  /upload:
+    get:
+      description: "Retrieve an upload URL."
+      body:
+        type: ClipboardRequestWithoutPayload
+      responses:
+        200:
+          body:
+            type: UploadURL
+        204:
+          body:
+            type: GenericResponse
+        401:
+          body:
+            type: GenericResponse
+        404:
+          body:
+            type: GenericResponse
+        500:
+          body:
+            type: GenericResponse
+
 
 /user:
   /authenticate:
