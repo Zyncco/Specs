@@ -166,7 +166,7 @@ securedBy: [X-ZYNC-TOKEN]
             type: GenericResponse
   /upload:
     post:
-      description: "Retrieve an upload URL."
+      description: "Retrieve an upload token."
       body:
         type: ClipboardRequestWithoutPayload
       responses:
@@ -185,6 +185,27 @@ securedBy: [X-ZYNC-TOKEN]
         500:
           body:
             type: GenericResponse
+    /{token}:
+      post:
+        description: "Upload a large clip."
+        body:
+          type: application/octet-stream
+        responses:
+          200:
+            body:
+              type: GenericResponse
+          204:
+            body:
+              type: GenericResponse
+          401:
+            body:
+              type: GenericResponse
+          404:
+            body:
+              type: GenericResponse
+          500:
+            body:
+              type: GenericResponse
 
 
 /user:
