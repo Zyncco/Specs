@@ -15,6 +15,8 @@ types:
   ClipboardResponse: !include types/responses/Clipboard.raml
   UserAuthenticateResponse: !include types/responses/UserAuthenticateResponse.raml
   UploadURL: !include types/responses/UploadURL.raml
+  Limits: !include types/responses/Limits.raml
+  UserInfo: !include types/responses/UserInfo.raml
   ClipboardRequest: !include types/requests/Clipboard.raml
   ClipboardRequestWithoutPayload: !include types/requests/ClipboardWithoutPayload.raml
   UserAuthenticate: !include types/requests/UserAuthenticate.raml
@@ -218,6 +220,42 @@ securedBy: [X-ZYNC-TOKEN]
       responses:
         200:
           body: UserAuthenticateResponse
+        400:
+          body:
+            type: GenericResponse
+        500:
+          body:
+            type: GenericResponse
+  /validate:
+    get:
+      description: "Check whether zync token is valid or invalid"
+      responses:
+        200:
+          body: GenericResponse
+        400:
+          body:
+            type: GenericResponse
+        500:
+          body:
+            type: GenericResponse
+  /limits:
+    get:
+      description: "Get limits for this user"
+      responses:
+        200:
+          body: Limits
+        400:
+          body:
+            type: GenericResponse
+        500:
+          body:
+            type: GenericResponse
+  /info:
+    get:
+      description: "Get info about this user"
+      responses:
+        200:
+          body: UserInfo
         400:
           body:
             type: GenericResponse

@@ -1,0 +1,18 @@
+#%RAML 1.0 DataType
+
+type: object
+properties:
+  success: !include Success.raml
+  error: !include Error.raml
+  data:
+    type: object
+    properties:
+      clipboard:
+        type: object
+        properties:
+          size-limit:
+            type: integer
+            description: "Size limit of a single clip represented in bytes"
+          count-limit:
+            type: integer
+            description: "Count how many clipboards the user can have in history"
