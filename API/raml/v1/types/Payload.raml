@@ -1,0 +1,19 @@
+#%RAML 1.0 DataType
+
+type: string
+description: |
+  Fully processed clipboard payload with the following steps.
+
+  1. A CRC32 checksum is made of the clip data
+  2. Clipboard data is compressed using gzip
+  3. Both are placed inside a json object as follows:
+
+      {
+        "data": "<compressed clipboard data>"
+        "crc32": "<crc32 of uncompressed data>"
+      }
+
+  4. The json object is encrypted using AES256/GCM/NOPADDING
+  5. The encrypted data is processed with Base64
+
+  The Base64 processed data is the final result
