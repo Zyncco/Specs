@@ -8,10 +8,9 @@ description: |
   2. Clipboard data is compressed using gzip
   3. Both are placed inside a json object as follows:
 
-      {
-        "data": "%compressed clipboard data%"
-        "crc32": "%crc32 of uncompressed data%"
+      {</br>
+        &nbsp;&nbsp;"data": "&lt;compressed clipboard data&gt;"</br>
+        &nbsp;&nbsp;"crc32": "&lt;crc32 of uncompressed data&gt;"</br>
       }
-
   4. The json object is encrypted using AES256/GCM/NOPADDING
   5. The encrypted data is processed with Base64
