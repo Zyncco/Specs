@@ -26,9 +26,7 @@ properties:
           salt:
             type: string
             description: "The salt for encryption key"
-      payload:
-        type: string
-        description: "Fully processed clipboard payload (Compressed, Encrypted, Base64'd)"
+      payload: !include ../Payload.raml
       payload-type:
         enum: ["TEXT", "IMAGE", "VIDEO", "BINARY"]
         description: "The data-type of the payload"
