@@ -4,8 +4,8 @@ type: string
 description: |
   Fully processed clipboard payload with the following steps.
 
-  1. A CRC32 checksum is made of the clip data
-  2. Clipboard data is compressed using gzip
+  1. Clipboard data is compressed using gzip
+  2. Extract CRC32 from the first 4 bytes of the last 8 bytes of the gzip data
   3. Both are placed inside a json object as follows:
 
       {</br>
