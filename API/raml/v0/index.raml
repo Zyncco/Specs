@@ -1,8 +1,10 @@
 #%RAML 1.0
----
+
 title: Zync API
+
 baseUri: https://api.zync.co/{version}
 version: v0
+
 mediaType: application/json
 
 securitySchemes:
@@ -11,6 +13,8 @@ securitySchemes:
 types:
   ClipboardResponse: !include types/responses/Clipboard.raml
   ClipboardRequest: !include types/requests/Clipboard.raml
+
+securedBy: [X-ZYNC-TOKEN]
 
 /clipboard:
   /get:
