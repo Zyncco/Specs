@@ -1,0 +1,9 @@
+#%RAML 1.0 DataType
+
+type: string
+description: |
+  Fully processed clipboard payload with the following steps.
+
+  1. Clipboard data is compressed using gzip
+  2. This compressed data is encrypted using NaCl's SecretBox implementation with the user's local password.
+  3. The encrypted data is processed with Base64

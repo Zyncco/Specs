@@ -1,0 +1,25 @@
+#%RAML 1.0
+---
+title: Zync API
+baseUri: https://api.zync.co/{version}
+version: v2
+mediaType: application/json
+
+securitySchemes:
+  X-ZYNC-TOKEN: !include security/x-zync-token.raml
+
+types:
+  ClipboardResponse: !include types/responses/Clipboard.raml
+  ClipboardRequest: !include types/requests/Clipboard.raml
+
+/clipboard:
+  /get:
+    description: "Retrieves the latest clipboard entry."
+    responses:
+      200:
+        body:
+          type: ClipboardResponse
+  /post:
+    description: "Add a new entry to the cloud clipboard."
+    body:
+      type: ClibpoardRequest

@@ -11,7 +11,7 @@ git config --global user.name "Travis CI"
 
 npm install raml2html
 
-raml2html API/raml/v1/index.raml > public/index.html
+raml2html API/raml/v0/index.raml > public/index.html
 
 echo "docs.zync.co" > public/CNAME
 
